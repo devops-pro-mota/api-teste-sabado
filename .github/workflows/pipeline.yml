@@ -1,0 +1,27 @@
+name: pipeline-api
+on:
+  workflow_dispatch:
+    ## o mais proximo dos parametros do azuredevops 
+    inputs:
+      Gmud:
+        type: string
+      environment:
+        type: choice
+        description: environment
+        options:
+        - dev
+        - hml
+        - prd
+      namespace:
+        type: choice
+        description: namespace app
+        options:
+        - ns-integrador
+
+jobs: 
+  call-workflow:
+    secrets: inherit            
+    uses: devops-pro-mota/build-templates/.github/workflows/api-csharp.yml@main
+    with:                       
+      environment: ${{ github.event.inputs.environment }}
+      namespace: "ns-integrador"
