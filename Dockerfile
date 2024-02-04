@@ -5,7 +5,7 @@ FROM php:7.4-apache
 WORKDIR /var/www/html
 
 # Copiar o arquivo PHP para o diretório padrão do Apache
-COPY app.php .
+COPY index.php .
 
 # Conceder permissões apropriadas no diretório de trabalho para o Apache executar corretamente
 RUN chown -R www-data:www-data /var/www/html && \
