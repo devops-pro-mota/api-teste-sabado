@@ -4,6 +4,7 @@ $env = getenv('ambiente');
 $urlFrontend = getenv('url_frontend');
 
 // Imprime as informações
-echo "Ambiente: $env\n";
-echo "URL do Frontend: $urlFrontend\n";
+echo "<b>Ambiente:</b> $env\n";
+echo "<br>";
+echo "<b>URL da API:</b> $urlFrontend\n";
 ?>
