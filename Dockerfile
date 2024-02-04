@@ -1,11 +1,18 @@
-# Usa a imagem oficial do PHP
-FROM php:7.4-cli
+# Usar a imagem base oficial do PHP com Apache
+FROM php:7.4-apache
 
-# Define o diretório raiz de trabalho
-WORKDIR /usr/src/app
+# Definir diretório de trabalho
+WORKDIR /var/www/html
 
-# Copia o arquivo PHP para o contêiner
-COPY app.php ./
+# Copiar o arquivo PHP para o diretório padrão do Apache
+COPY app.php .
 
-# O comando que será executado quando o contêiner iniciar
-CMD [ "php", "./app.php" ]
+# Conceder permissões apropriadas no diretório de trabalho para o Apache executar corretamente
+RUN chown -R www-data:www-data /var/www/html && \
+    chmod -R 755 /var/www/html
+
+# O Apache usa a porta 80 por padrão, portanto, expô-la
+EXPOSE 80
+
+# O comando padrão inicia o Apache no foreground
+CMD ["apache2-foreground"]
